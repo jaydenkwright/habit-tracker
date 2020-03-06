@@ -3,8 +3,7 @@ dotenv.config()
 const express = require('express')
 const mongoose = require('mongoose')
 const habits = require('./api/habits')
-const completions = require('./api/completed.js')
-const db = require('./config/keys').mongoURI
+const completions = require('./api/completed')
 const app = express()
 app.use(express.json())
 
