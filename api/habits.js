@@ -30,8 +30,8 @@ router.post('/', async (req, res) => {
         description: req.body.description
     })
     try{
-    const savedHabit = await newHabit.save()
-    res.json(savedHabit)
+        const savedHabit = await newHabit.save()
+        res.json(savedHabit)
     }catch(err){
         res.json({ message: error})
     }
