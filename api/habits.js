@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const Habit = require('../models/habit.js')
+const Habit = require('../models/habit')
 
 // GET ALL HABITS
 router.get('/', async (req, res) => {

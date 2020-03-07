@@ -4,6 +4,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const habits = require('./api/habits')
 const completions = require('./api/completed')
+const auth = require('./api/auth')
 const app = express()
 app.use(express.json())
 
@@ -12,7 +13,8 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, 
     .catch(err => console.log(err))
 
 app.use('/api/habits', habits)
-app.use('/api/completed', completions)  
+app.use('/api/completed', completions) 
+app.use('/api/user', auth) 
 
 const port = process.env.PORT || 5000
 
