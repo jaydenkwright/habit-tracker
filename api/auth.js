@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
 const bcrypt = require('bcryptjs')
-// Validation
 const joi = require('@hapi/joi')
+const jwt = require('jsonwebtoken')
 
+// REGISTRATION
 const registerSchema = joi.object({
     name: joi.string()
         .min(2)
@@ -49,6 +50,35 @@ router.post('/register', async (req, res) => {
     }catch(err){
         res.status(400).send(err)
     }
+})
+
+// LOGIN
+
+const loginSchema = joi.object({
+    username: joi.string()
+        .required(),
+    password: joi.string()
+        .required()
+})
+
+router.post('/login', async (req, res) => {
+    const {error} = loginSchema.validate(req.body);
+    if(error) return res.status(400).send(error.details[0].message)
+
+    // Make sure user exists
+    const user = await User.findOne({ username: req.body.username})
+    if(!user) return res.status(400).send('Username or Password is incorrect')
+
+    // Check if password is correct
+    const validPassword = await bcrypt.compare(req.body.password, user.password)
+    if(!validPassword) return res.status(400).send('Username or Password is incorrect') 
+
+    // Login Token
+
+    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET)
+    res.header('login-token', token).send(token)
+
+
 })
 
 module.exports = router

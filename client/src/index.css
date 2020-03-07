@@ -12,3 +12,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.habit{
+  background-color: #fff;
+  padding: .5em;
+  margin: 1.5em;
+}
