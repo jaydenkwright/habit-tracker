@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/user')
-
+const bcrypt = require('bcryptjs')
 // Validation
 const joi = require('@hapi/joi')
 
@@ -32,11 +32,16 @@ router.post('/register', async (req, res) => {
     const userExist = await User.findOne({ username: req.body.username})
     if(userExist) return res.status(400).send('Username is already taken')
     // Create new user
+
+    // Password hashing
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(req.body.password, salt)
+
     const user = new User({
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password
+        password: hashedPassword
     })
     try{
         const savedUser = await user.save()
