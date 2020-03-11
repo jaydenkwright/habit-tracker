@@ -6,7 +6,6 @@ import Habits from './components/Habits'
 function App() {
   return (
     <div className="App">
-      <Navbar />
       <Habits />
     </div>
   );
