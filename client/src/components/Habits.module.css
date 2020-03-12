@@ -1,0 +1,18 @@
+.title{
+    font-size: 72px;
+    color: #fafafa;
+}
+
+.date{
+    font-size: 1.5em;
+    color: #fafafa;
+}
+
+.card{
+    margin-top: 1em;
+    padding: .3em;
+    width: 70%;
+    display: inline-block;
+    background: #424242;
+    text-align: left;
+}
