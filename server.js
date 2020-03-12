@@ -6,6 +6,9 @@ const habits = require('./api/habits')
 const completions = require('./api/completed')
 const auth = require('./api/auth')
 const app = express()
+const cors = require('cors');
+
+app.use(cors());
 app.use(express.json())
 
 mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})

@@ -5,9 +5,15 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Context from '../Context/Context'
 
 const title = {
     fontSize: "72px",
+    color: "#fafafa"
+}
+
+const date = {
+    fontSize: "1.5em",
     color: "#fafafa"
 }
 
@@ -33,12 +39,28 @@ const description = {
     paddingLeft: ".3em"
 }
 
-const highlight = {
+const essential = {
+    backgroundColor: "#f44336",
+    width: "2em",
+    height: "1em",
+    color: "#f44336"
+}
+
+const lifestyle = {
     backgroundColor: "#43a047",
     width: "2em",
     height: "1em",
     color: "#43a047"
 }
+
+const work = {
+    backgroundColor: "#2196f3",
+    width: "2em",
+    height: "1em",
+    color: "#2196f3"
+}
+
+
 
 export class Habits extends Component {
     render() {
@@ -47,39 +69,31 @@ export class Habits extends Component {
                 <Typography style={title}>
                     Today
                 </Typography>
-                <Card style={card}>
-                    <CardContent>
-                        <div style={habitTitle}>
-                            Wake up before 8:30 AM
-                        </div>
-                        <div style={highlight}>.</div>
-                        <Typography variant="h5" color="" style={description}>
-                            Wake up and get out of bed by 7:00 AM
-                        </Typography>
-                    </CardContent>
-                </Card>
-                <Card style={card}>
-                    <CardContent>
-                        <Typography style={habitTitle}>
-                            Leave the house by 8:30 AM
-                        </Typography>
-                        <div style={highlight}>.</div>
-                        <Typography variant="h5" style={description}>
-                            Be out of the house by 8:30 AM
-                        </Typography>
-                    </CardContent>
-                </Card>
-                <Card style={card}>
-                    <CardContent>
-                        <Typography style={habitTitle}>
-                            Read a book
-                        </Typography>
-                        <div style={highlight}>.</div>
-                        <Typography variant="h5" style={description}>
-                            Read for at least 30 minutes everyday
-                        </Typography>
-                    </CardContent>
-                </Card>
+                <Typography style={date}>
+                    Wed March 12
+                </Typography>
+            <Context.Consumer>
+                {context => 
+                    <div>
+                    {
+                        context.habits.map((habit) => (
+                            <Card style={card}>
+                                <CardContent>
+                                    <div style={habitTitle}>
+                                        {habit.title}
+                                    </div>
+                                    <div style={essential}>.</div>
+                                    <Typography variant="h5" color="" style={description}>
+                                    {habit.description}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        ))
+                    }
+
+                    </div>
+                } 
+            </Context.Consumer>
             </div>
         )
     }
