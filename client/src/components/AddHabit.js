@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Context from '../Context/Context'
 import TextField from '@material-ui/core/TextField';
 import { green } from '@material-ui/core/colors';
+import styles from './AddHabits.module.css'
 import axios from 'axios'
 
 export default function AddHabit() {
@@ -18,7 +19,8 @@ export default function AddHabit() {
         width: "70%",
         display: "inline-block",
         backgroundColor: "#424242",
-        textAlign: "left"
+        textAlign: "left",
+        transition: "0.4s ease-out"
     }
 
     const [title, setTitle] = useState('')
@@ -39,6 +41,7 @@ export default function AddHabit() {
         })
             .then((response) => {
                 console.log(response);
+
               }, (error) => {
                 console.log(error);
               });
@@ -55,28 +58,30 @@ export default function AddHabit() {
                         autoComplete="off"
                         onSubmit={onSubmit}
                     >
-                        <div>
+                        <div className={styles.title}>
                             <TextField id="standard-basic" 
-                            label="Enter a habit title..." 
-                            onChange={onTitleChange}
+                                label="Enter a habit title..." 
+                                onChange={onTitleChange}
                             />
                         </div>
-                        <div>
+                        <div className={styles.description}>
                             <TextField
-                            id="filled-multiline-static"
-                            label="Habit description..."
-                            multiline
-                            rows="4"
-                            onChange={onDescriptionChange}
+                                id="filled-multiline-static"
+                                label="Habit description..."
+                                multiline
+                                rows="4"
+                                onChange={onDescriptionChange}
                             />
                         </div>
-                        <Button 
-                            type="submit"
-                            variant="contained" 
-                            style={{ backgroundColor: green[500] }}
-                        >
-                            Add
-                        </Button>
+                        <div className={styles.submit}>
+                            <Button 
+                                type="submit"
+                                variant="contained" 
+                                style={{ backgroundColor: green[500] }}
+                            >
+                                Add
+                            </Button>
+                        </div>
                     </form>
                 </CardContent>
             </Card>
