@@ -11,6 +11,7 @@ import { IconButton } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Context from '../Context/Context'
 import AddHabit from './AddHabit'
+import Habit from './Habit'
 
 
 
@@ -69,7 +70,12 @@ function Habits (){
     }
     
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
-    
+    const [showHabit, toggleHabit] = useState(false)
+    const [habitId, setHabitId] = useState('')
+    const loadHabit = (id) => {
+        toggleHabit(true)
+        setHabitId(id)
+    }
     const toggleAddHabit = () => {
         setAddHabitVisible(!addHabitVisisble)
         console.log(addHabitVisisble)
@@ -84,6 +90,7 @@ function Habits (){
                 </h1>
             <Context.Consumer>
                 {context => 
+                showHabit === false ?
                     <div>
                         <div>
                             <IconButton>
@@ -93,7 +100,7 @@ function Habits (){
                     {addHabitVisisble === true ? <AddHabit /> : ''}    
                     {
                         context.habits.map((habit) => (
-                            <Card style={card}>
+                            <Card style={card} onClick={() => loadHabit(habit._id)}>
                                 <CardContent>
                                     <div style={habitTitle}>
                                         {habit.title}
@@ -107,6 +114,7 @@ function Habits (){
                         ))
                     }
                     </div>
+                    : <Habit id={habitId}/>
                 } 
             </Context.Consumer>
             </div>
