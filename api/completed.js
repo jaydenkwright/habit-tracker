@@ -2,15 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Completed = require('../models/completions')
 
-router.get('/', async (req, res) => {
+router.get('/:id/:date', async (req, res) => {
     try{
-        const completions = await Completed.find()
-            .sort({ date: -1 })
+        const completions = await Completed.find({"_id": req.params.id, "date": req.params.date })
             .then(completions => res.json(completions))
     }catch(err){
         res.json({message: error})
     }
 })
+
 
 router.post('/', async (req, res) => {
     const newCompletion = new Completed({

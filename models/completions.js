@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 const completionSchema = new Schema({
     habitId: {
-        type: Number,
+        type: String,
         required: true
     },
     completed: {

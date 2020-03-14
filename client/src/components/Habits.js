@@ -80,13 +80,15 @@ function Habits (){
         setAddHabitVisible(!addHabitVisisble)
         console.log(addHabitVisisble)
     }
+    const today = new Date();
+    const getDate = `${today.getDay()} ${today.getMonth()} ${today.getFullYear()}`
         return (
             <div>
                 <h1 className={styles.title}>
                     Today
                 </h1>
                 <h1 className={styles.date}>
-                    Wed March 12
+                    {getDate}
                 </h1>
             <Context.Consumer>
                 {context => 

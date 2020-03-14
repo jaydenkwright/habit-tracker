@@ -21,7 +21,7 @@ function App() {
   console.log(habitData)
   return (
     <div className="App">
-      <Context.Provider value={{habits: habitData, setHabit: setHabitData}}>
+      <Context.Provider value={{habits: habitData}}>
         <Habits />
       </Context.Provider>
     </div>

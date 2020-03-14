@@ -46,6 +46,8 @@ export default function AddHabit() {
                 console.log(error);
               });
         console.log('submited')
+        const d = new Date()
+        console.log(d.toISOString())
     }
     console.log(title)
     console.log(description)
