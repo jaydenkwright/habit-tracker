@@ -12,20 +12,11 @@ import Typography from '@material-ui/core/Typography';
 import Context from '../Context/Context'
 import AddHabit from './AddHabit'
 import Habit from './Habit'
-
+import moment from 'moment'
+import axios from 'axios'
 
 
 function Habits (){
-    const title = {
-        fontSize: "72px",
-        color: "#fafafa"
-    }
-    
-    const date = {
-        fontSize: "1.5em",
-        color: "#fafafa"
-    }
-    
     const habitTitle = {
         fontSize: "36px",
         textAlign: "left",
@@ -52,7 +43,9 @@ function Habits (){
         backgroundColor: "#f44336",
         width: "2em",
         height: "1em",
-        color: "#f44336"
+        color: "#f44336",
+        border: "none",
+        outline: "none"
     }
     
     const lifestyle = {
@@ -72,6 +65,7 @@ function Habits (){
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
     const [showHabit, toggleHabit] = useState(false)
     const [habitId, setHabitId] = useState('')
+    const [date, setDate] = useState(Date.now())
     const loadHabit = (id) => {
         toggleHabit(true)
         setHabitId(id)
@@ -80,45 +74,53 @@ function Habits (){
         setAddHabitVisible(!addHabitVisisble)
         console.log(addHabitVisisble)
     }
-    const today = new Date();
-    const getDate = `${today.getDay()} ${today.getMonth()} ${today.getFullYear()}`
+    const completeHabit = (id) => {
+        console.log(id)
+        axios.post('http://localhost:5000/api/completed/', {
+            habitId: id,
+            completed: true
+        })
+        .then((response) => {
+            console.log(response);
+
+          }, (error) => {
+            console.log(error);
+          });
+    }
         return (
             <div>
-                <h1 className={styles.title}>
-                    Today
-                </h1>
-                <h1 className={styles.date}>
-                    {getDate}
-                </h1>
-            <Context.Consumer>
-                {context => 
-                showHabit === false ?
-                    <div>
+                <h1 className={styles.title}>Today</h1>
+                <h1 className={styles.dayOfWeek}>{ moment().format("ddd") }</h1>
+                <h1 className={styles.date}>{ moment().format("MMM D YYYY") }</h1>
+                <Context.Consumer>
+                    {context => 
+                    showHabit === false ?
                         <div>
-                            <IconButton>
-                                <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
-                            </IconButton>
+                            <div>
+                                <IconButton>
+                                    <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
+                                </IconButton>
+                            </div>
+                        {addHabitVisisble === true ? <AddHabit /> : ''}    
+                        {
+                            context.habits.map((habit) => (
+                                <Card style={card}>
+                                    <CardContent>
+                                        <div style={habitTitle} onClick={() => loadHabit(habit._id)}>
+                                            {habit.title}
+                                        </div>
+                                        <button style={essential} onClick={() => completeHabit(habit._id)}></button>
+                                        <Typography variant="h5" color="" style={description} onClick={() => loadHabit(habit._id)}>
+                                        {habit.description}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            ))
+                        }
                         </div>
-                    {addHabitVisisble === true ? <AddHabit /> : ''}    
-                    {
-                        context.habits.map((habit) => (
-                            <Card style={card} onClick={() => loadHabit(habit._id)}>
-                                <CardContent>
-                                    <div style={habitTitle}>
-                                        {habit.title}
-                                    </div>
-                                    <div style={essential}>.</div>
-                                    <Typography variant="h5" color="" style={description}>
-                                    {habit.description}
-                                    </Typography>
-                                </CardContent>
-                            </Card>
-                        ))
-                    }
-                    </div>
-                    : <Habit id={habitId}/>
-                } 
-            </Context.Consumer>
+                        : <Habit id={habitId}/>
+                    } 
+                </Context.Consumer>
             </div>
         )
     }

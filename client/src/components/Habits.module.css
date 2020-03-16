@@ -1,12 +1,19 @@
 .title{
     font-size: 72px;
     color: #fafafa;
+    margin: .3em;
+}
+
+.dayOfWeek{
+    font-size: 3em;
+    color: #fafafa;
 }
 
 .date{
-    font-size: 1.5em;
+    font-size: 2em;
     color: #fafafa;
 }
+
 
 .card{
     margin-top: 1em;
