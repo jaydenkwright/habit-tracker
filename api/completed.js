@@ -40,4 +40,16 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.patch('/:id', async(req, res) => {
+    try{
+        const completion = await Completed.updateOne({ _id: req.params.id}, 
+            {$set: {
+                completed: req.body.completed,
+            }})
+            res.json(completion)
+    }catch(err){
+        res.json({message: err})
+    }
+})
+
 module.exports = router

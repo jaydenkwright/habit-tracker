@@ -21,12 +21,14 @@ export default function MarkComplete(props) {
     }
     const [complete, setCompleted] = useState('')
     const [newUpdate, setNewUpdate] = useState('')
+    const [completionId, setCompletionId] = useState('')
     useEffect(() => {
         axios.get(`http://localhost:5000/api/completed/${props.id}/${props.date}`)
         .then((response) => {
             if(response.data[0]){
                 console.log(response.data[0])
                 setCompleted(response.data[0].completed)
+                setCompletionId(response.data[0]._id)
                 setNewUpdate(true)
                 console.log(complete.completed)
             }else{
@@ -46,12 +48,23 @@ export default function MarkComplete(props) {
             })
                 .then((response) => {
                     console.log(response);
+                    setCompletionId(response.data._id)
 
                 }, (error) => {
                     console.log(error);
                 });
             setNewUpdate(true)
         }else{
+                axios.patch(`http://localhost:5000/api/completed/${completionId}`, 
+                { 
+                    completed: !complete 
+                })
+                    .then((response) => {
+                    console.log(response)
+                }, (error) => {
+                    console.log(error);
+                });
+
             console.log('updated')
         }
     }
