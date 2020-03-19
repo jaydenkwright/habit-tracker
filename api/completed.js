@@ -22,7 +22,7 @@ router.get('/:id/:date', async (req, res) => {
         }})
             .then(completions => res.json(completions))
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
 

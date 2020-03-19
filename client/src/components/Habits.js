@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import Context from '../Context/Context'
 import AddHabit from './AddHabit'
 import Habit from './Habit'
+import MarkComplete from './MarkComplete'
 import moment from 'moment'
 import axios from 'axios'
 
@@ -65,7 +66,7 @@ function Habits (){
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
     const [showHabit, toggleHabit] = useState(false)
     const [habitId, setHabitId] = useState('')
-    const [date, setDate] = useState(Date.now())
+    const [date, setDate] = useState(new Date())
     const loadHabit = (id) => {
         toggleHabit(true)
         setHabitId(id)
@@ -80,12 +81,12 @@ function Habits (){
             habitId: id,
             completed: true
         })
-        .then((response) => {
-            console.log(response);
+            .then((response) => {
+                console.log(response);
 
-          }, (error) => {
-            console.log(error);
-          });
+            }, (error) => {
+                console.log(error);
+            });
     }
         return (
             <div>
@@ -109,7 +110,7 @@ function Habits (){
                                         <div style={habitTitle} onClick={() => loadHabit(habit._id)}>
                                             {habit.title}
                                         </div>
-                                        <button style={essential} onClick={() => completeHabit(habit._id)}></button>
+                                        <MarkComplete id={habit._id} date={date}/>
                                         <Typography variant="h5" color="" style={description} onClick={() => loadHabit(habit._id)}>
                                         {habit.description}
                                         </Typography>
