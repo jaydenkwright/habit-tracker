@@ -55,16 +55,15 @@ export default function MarkComplete(props) {
                 });
             setNewUpdate(true)
         }else{
-                axios.patch(`http://localhost:5000/api/completed/${completionId}`, 
-                { 
-                    completed: !complete 
-                })
-                    .then((response) => {
+            axios.patch(`http://localhost:5000/api/completed/${completionId}`, 
+            { 
+                completed: !complete 
+            })
+                .then((response) => {
                     console.log(response)
                 }, (error) => {
                     console.log(error);
                 });
-
             console.log('updated')
         }
     }

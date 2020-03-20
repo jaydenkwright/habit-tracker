@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const newHabit = new Habit({
         title: req.body.title,
-        description: req.body.description
+        description: req.body.description,
     })
     try{
         const savedHabit = await newHabit.save()
@@ -64,7 +64,22 @@ router.patch('/:id', async (req, res) => {
     }
 })
 
+router.patch('/increase/:id', async(req, res) => {
+    try{
+        const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: 1 }}, {useFindAndModify: false})
+            res.json(habit)
+    }catch(err){
+        res.json({message: error})
+    }
+})
 
-
+router.patch('/decrease/:id', async(req, res) => {
+    try{
+        const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: -1 }}, {useFindAndModify: false})
+            res.json(habit)
+    }catch(err){
+        res.json({message: error})
+    }
+})
 
 module.exports = router

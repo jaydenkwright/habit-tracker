@@ -9,6 +9,10 @@ const habitSchema = new Schema({
     description: {
         type: String
     },
+    completions: {
+        type: Number,
+        default: 0,
+    },
     date: {
         type: Date,
         default: Date.now
