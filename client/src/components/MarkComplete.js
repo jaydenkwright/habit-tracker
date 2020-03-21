@@ -49,11 +49,17 @@ export default function MarkComplete(props) {
                 .then((response) => {
                     console.log(response);
                     setCompletionId(response.data._id)
-
+                    
                 }, (error) => {
                     console.log(error);
                 });
             setNewUpdate(true)
+            axios.patch(`http://localhost:5000/api/habits/increase/${props.id}`)
+                .then((response) => {
+                    console.log(response)
+                }, (error) => {
+                    console.log(error);
+                });
         }else{
             axios.patch(`http://localhost:5000/api/completed/${completionId}`, 
             { 
@@ -64,6 +70,23 @@ export default function MarkComplete(props) {
                 }, (error) => {
                     console.log(error);
                 });
+            if(complete === true){
+                axios.patch(`http://localhost:5000/api/habits/decrease/${props.id}`)
+                .then((response) => {
+                    console.log(response)
+                }, (error) => {
+                    console.log(error);
+                })
+            }
+            if(complete === false){
+                axios.patch(`http://localhost:5000/api/habits/increase/${props.id}`)
+                .then((response) => {
+                    console.log(response)
+                }, (error) => {
+                    console.log(error);
+                })
+            }
+            console.log(complete)
             console.log('updated')
         }
     }
