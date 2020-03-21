@@ -10,7 +10,6 @@ export default function Habit(props) {
     const [habit, setHabit] = useState([])
     const [date, setDate] = useState(d.toISOString())
     const [complete, setComplete] = useState([])
-    const [completedState, setComp] = useState('')
     useEffect(() => {
         axios.get(`http://localhost:5000/api/habits/${props.id}`)
           .then((response) => {

@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styles from './Habits.module.css'
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import { green } from '@material-ui/core/colors';
 import { IconButton } from '@material-ui/core';
@@ -15,7 +12,6 @@ import Habit from './Habit'
 import MarkComplete from './MarkComplete'
 import moment from 'moment'
 import axios from 'axios'
-
 
 function Habits (){       
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
