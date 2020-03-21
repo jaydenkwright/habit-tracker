@@ -1,0 +1,30 @@
+.title {
+    font-Size: 72px;
+    text-align: left;
+    color: #eceff1;
+}
+
+.notCompleted{
+    background-Color: #f44336;
+    width: 2em;
+    height: 1em;
+    color: #f44336;
+    outline: none;
+    border: none;
+}
+
+.completed{
+    background-Color: #43a047;
+    width: 2em;
+    height: 1em;
+    color: #f44336;
+    outline: none;
+    border: none;
+}
+
+.description {
+    color: #bdbdbd;
+    font-Size: 20px;
+    padding-Top: 1em;
+    padding-Left: .3em;
+}

@@ -3,6 +3,7 @@ import axios from 'axios'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import styles from './Habit.module.css'
 
 export default function Habit(props) {
     const d = new Date()
@@ -36,42 +37,17 @@ export default function Habit(props) {
         backgroundColor: "#424242",
         textAlign: "left"
     }
-    const habitTitle = {
-        fontSize: "72px",
-        textAlign: "left",
-        color: "#eceff1",
-    }
-    const description = {
-        color: "#bdbdbd",
-        fontSize: "20px",
-        paddingTop: "1em",
-        paddingLeft: ".3em"
-    }
-
-    const notCompleted = {
-        backgroundColor: "#f44336",
-        width: "2em",
-        height: "1em",
-        color: "#f44336"
-    }
-
-    const completed = {
-        backgroundColor: "#43a047",
-        width: "2em",
-        height: "1em",
-        color: "#43a047"
-    }
     return (
         <div>
             <Card style={card}>
                 <CardContent>
-                    <div style={habitTitle}>
+                    <div className={styles.title}>
                         {habit.title}
                     </div>
                     {complete.map((comp) => (
-                        <div style={comp && comp.completed === true? completed : notCompleted}>.</div>
+                        <div className={comp && comp.completed === true ? styles.completed : styles.notCompleted}>.</div>
                     ))}
-                    <Typography variant="h5" style={description}>
+                    <Typography variant="h5" className={styles.description}>
                         {habit.description}
                     </Typography>
                 </CardContent>
