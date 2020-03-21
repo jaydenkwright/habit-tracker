@@ -1,0 +1,17 @@
+.notCompleted{
+    background-Color: #f44336;
+    width: 2em;
+    height: 1em;
+    color: #f44336;
+    outline: none;
+    border: none;
+}
+
+.completed{
+    background-Color: #43a047;
+    width: 2em;
+    height: 1em;
+    color: #f44336;
+    outline: none;
+    border: none;
+}

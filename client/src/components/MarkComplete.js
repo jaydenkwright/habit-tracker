@@ -1,24 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios'
+import styles from './MarkComplete.module.css'
 
 export default function MarkComplete(props) {
-    const notCompleted = {
-        backgroundColor: "#f44336",
-        width: "2em",
-        height: "1em",
-        color: "#f44336",
-        outline: "none",
-        border: "none"
-    }
-
-    const completed = {
-        backgroundColor: "#43a047",
-        width: "2em",
-        height: "1em",
-        color: "#43a047",
-        outline: "none",
-        border: "none"
-    }
     const [complete, setCompleted] = useState('')
     const [newUpdate, setNewUpdate] = useState('')
     const [completionId, setCompletionId] = useState('')
@@ -86,13 +70,12 @@ export default function MarkComplete(props) {
                     console.log(error);
                 })
             }
-            console.log(complete)
             console.log('updated')
         }
     }
     return (
         <div>
-           <button style={complete === true ? completed : notCompleted} onClick={() => completeHabit(props.id)}></button> 
+           <button className={complete === true ? styles.completed : styles.notCompleted} onClick={() => completeHabit(props.id)}></button> 
         </div>
     )
 }
