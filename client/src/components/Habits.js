@@ -24,10 +24,8 @@ function Habits (){
     }
     const toggleAddHabit = () => {
         setAddHabitVisible(!addHabitVisisble)
-        console.log(addHabitVisisble)
     }
     const completeHabit = (id) => {
-        console.log(id)
         axios.post('http://localhost:5000/api/completed/', {
             habitId: id,
             completed: true
@@ -41,7 +39,6 @@ function Habits (){
     }
 
     const deleteHabit = (id) => {
-        console.log(id)
         axios.delete(`http://localhost:5000/api/habits/${id}`)
             .then((response) => {
                 console.log(response);

@@ -1,17 +1,20 @@
 const express = require('express')
 const router = express.Router()
+const verify = require('./verifyToken')
 const Habit = require('../models/habit')
 
 // GET ALL HABITS
-router.get('/', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     try{
     const habits = await Habit.find()
         .sort({ date: -1 })
         .then(habits => res.json(habits))
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
+
+
 
 // GET SPECIFIC HABIT
 router.get('/:id', async (req, res) => {
@@ -19,7 +22,7 @@ router.get('/:id', async (req, res) => {
         const habit = await Habit.findById(req.params.id)
         res.json(habit)
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
 
@@ -33,7 +36,7 @@ router.post('/', async (req, res) => {
         const savedHabit = await newHabit.save()
         res.json(savedHabit)
     }catch(err){
-        res.json({ message: error})
+        res.json({ message: err})
     }
 })
 
@@ -46,7 +49,7 @@ router.delete('/:id', async (req, res) => {
             .catch(err => res.status(404).json({ deleted: false}))
         res.json(habit)
     }catch(err){
-        res.json({message:error})
+        res.json({message: err})
     }
 })
 
@@ -60,7 +63,7 @@ router.patch('/:id', async (req, res) => {
             }})
             res.json(habit)
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
 
@@ -69,7 +72,7 @@ router.patch('/increase/:id', async(req, res) => {
         const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: 1 }}, {useFindAndModify: false})
             res.json(habit)
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
 
@@ -78,7 +81,7 @@ router.patch('/decrease/:id', async(req, res) => {
         const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: -1 }}, {useFindAndModify: false})
             res.json(habit)
     }catch(err){
-        res.json({message: error})
+        res.json({message: err})
     }
 })
 
