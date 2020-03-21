@@ -27,6 +27,7 @@
     font-Size: 36px;
     text-Align: left;
     color: #eceff1;
+    cursor: pointer;
 }
 
 .description{
@@ -34,4 +35,11 @@
     font-Size: 24px;
     padding-Top: .4em;
     padding-Left: .3em;
+}
+
+.delete{
+    text-align: right;
+    padding: 0;
+    color: #212121;
+    cursor: pointer;
 }

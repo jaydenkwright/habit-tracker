@@ -39,6 +39,17 @@ function Habits (){
                 console.log(error);
             });
     }
+
+    const deleteHabit = (id) => {
+        console.log(id)
+        axios.delete(`http://localhost:5000/api/habits/${id}`)
+            .then((response) => {
+                console.log(response);
+
+            }, (error) => {
+                console.log(error);
+            });
+    }
         return (
             <div>
                 <h1 className={styles.title}>Today</h1>
@@ -58,6 +69,9 @@ function Habits (){
                             context.habits.map((habit) => (
                                 <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
                                     <CardContent>
+                                        <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
+                                            x
+                                        </div>
                                         <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
                                             {habit.title}
                                         </div>
