@@ -14,7 +14,6 @@
     color: #fafafa;
 }
 
-
 .card{
     margin-top: 1em;
     padding: .3em;
@@ -22,4 +21,17 @@
     display: inline-block;
     background: #424242;
     text-align: left;
+}
+
+.habitTitle{
+    font-Size: 36px;
+    text-Align: left;
+    color: #eceff1;
+}
+
+.description{
+    color: #bdbdbd;
+    font-Size: 24px;
+    padding-Top: .4em;
+    padding-Left: .3em;
 }

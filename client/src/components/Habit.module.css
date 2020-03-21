@@ -28,3 +28,12 @@
     padding-Top: 1em;
     padding-Left: .3em;
 }
+
+.card{
+    margin-top: 1em;
+    padding: .3em;
+    width: 70%;
+    display: inline-block;
+    background: #424242;
+    text-align: left;
+}

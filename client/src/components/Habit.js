@@ -11,7 +11,6 @@ export default function Habit(props) {
     const [date, setDate] = useState(d.toISOString())
     const [complete, setComplete] = useState([])
     const [completedState, setComp] = useState('')
-    console.log(date)
     useEffect(() => {
         axios.get(`http://localhost:5000/api/habits/${props.id}`)
           .then((response) => {
@@ -22,31 +21,20 @@ export default function Habit(props) {
       useEffect(() => {
         axios.get(`http://localhost:5000/api/completed/${props.id}/${date}`)
         .then((response) => {
-            console.log(response.data[0])
             if(response.data[0]){
-                setComplete(response.data)
+                setComplete(response.data[0].completed)
                 console.log(complete)
             }
       })
       }, [])
-      const card = {
-        marginTop: "1em",
-        padding: ".3em",
-        width: "70%",
-        display: "inline-block",
-        backgroundColor: "#424242",
-        textAlign: "left"
-    }
     return (
         <div>
-            <Card style={card}>
+            <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
                 <CardContent>
                     <div className={styles.title}>
                         {habit.title}
                     </div>
-                    {complete.map((comp) => (
-                        <div className={comp && comp.completed === true ? styles.completed : styles.notCompleted}>.</div>
-                    ))}
+                        <div className={complete && complete === true ? styles.completed : styles.notCompleted}>.</div>
                     <Typography variant="h5" className={styles.description}>
                         {habit.description}
                     </Typography>

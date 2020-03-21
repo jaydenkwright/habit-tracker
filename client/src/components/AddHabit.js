@@ -12,17 +12,6 @@ import styles from './AddHabits.module.css'
 import axios from 'axios'
 
 export default function AddHabit() {
-
-    const card = {
-        marginTop: "1em",
-        padding: ".3em",
-        width: "70%",
-        display: "inline-block",
-        backgroundColor: "#424242",
-        textAlign: "left",
-        transition: "0.4s ease-out"
-    }
-
     const [title, setTitle] = useState('')
     const [description, setDesc] = useState('')
 
@@ -46,14 +35,12 @@ export default function AddHabit() {
                 console.log(error);
               });
         console.log('submited')
-        const d = new Date()
-        console.log(d.toISOString())
     }
     console.log(title)
     console.log(description)
     return (
         <div>
-            <Card style={card}>
+            <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
                 <CardContent>
                     <form 
                         noValidate 

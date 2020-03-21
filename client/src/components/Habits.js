@@ -17,52 +17,7 @@ import moment from 'moment'
 import axios from 'axios'
 
 
-function Habits (){
-    const habitTitle = {
-        fontSize: "36px",
-        textAlign: "left",
-        color: "#eceff1",
-    }
-    
-    const card = {
-        marginTop: "1em",
-        padding: ".3em",
-        width: "70%",
-        display: "inline-block",
-        backgroundColor: "#424242",
-        textAlign: "left"
-    }
-    
-    const description = {
-        color: "#bdbdbd",
-        fontSize: "24px",
-        paddingTop: ".4em",
-        paddingLeft: ".3em"
-    }
-    
-    const essential = {
-        backgroundColor: "#f44336",
-        width: "2em",
-        height: "1em",
-        color: "#f44336",
-        border: "none",
-        outline: "none"
-    }
-    
-    const lifestyle = {
-        backgroundColor: "#43a047",
-        width: "2em",
-        height: "1em",
-        color: "#43a047"
-    }
-    
-    const work = {
-        backgroundColor: "#2196f3",
-        width: "2em",
-        height: "1em",
-        color: "#2196f3"
-    }
-    
+function Habits (){       
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
     const [showHabit, toggleHabit] = useState(false)
     const [habitId, setHabitId] = useState('')
@@ -105,13 +60,13 @@ function Habits (){
                         {addHabitVisisble === true ? <AddHabit /> : ''}    
                         {
                             context.habits.map((habit) => (
-                                <Card style={card}>
+                                <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
                                     <CardContent>
-                                        <div style={habitTitle} onClick={() => loadHabit(habit._id)}>
+                                        <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
                                             {habit.title}
                                         </div>
                                         <MarkComplete id={habit._id} date={date}/>
-                                        <Typography variant="h5" color="" style={description} onClick={() => loadHabit(habit._id)}>
+                                        <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
                                         {habit.description}
                                         </Typography>
                                     </CardContent>
