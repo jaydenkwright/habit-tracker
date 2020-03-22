@@ -17,6 +17,16 @@ Habit Tracker web app built with MongoDB, Express, React, &amp; Node.js (MERN)
 
 [Axios](https://github.com/axios/axios)
 
+``` javascript
+axios.get('http://localhost:5000/api/habits')
+      .then((response) => {
+        setHabitData(response.data)
+      })
+  }
+```
+
+Used to make API calls to the backend Express server
+
 [bcrypt.js](https://github.com/dcodeIO/bcrypt.js)
 
 [JSON Web Token](https://jwt.io)
