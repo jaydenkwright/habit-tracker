@@ -4,6 +4,7 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const joi = require('@hapi/joi')
 const jwt = require('jsonwebtoken')
+const passport = require('passport')
 
 // REGISTRATION
 const registerSchema = joi.object({
@@ -55,30 +56,30 @@ router.post('/register', async (req, res) => {
 // LOGIN
 
 const loginSchema = joi.object({
-    username: joi.string()
+    email: joi.string()
         .required(),
     password: joi.string()
         .required()
 })
 
-router.post('/login', async (req, res) => {
-    const {error} = loginSchema.validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message)
+ router.post('/login', async (req, res) => {
+     const {error} = loginSchema.validate(req.body);
+     if(error) return res.status(400).send(error.details[0].message)
 
-    // Make sure user exists
-    const user = await User.findOne({ username: req.body.username})
-    if(!user) return res.status(400).send('Username or Password is incorrect')
+     // Make sure user exists
+     const email = await User.findOne({ email: req.body.email})
+     if(!email) return res.status(400).send('Username or Password is incorrect')
 
-    // Check if password is correct
-    const validPassword = await bcrypt.compare(req.body.password, user.password)
-    if(!validPassword) return res.status(400).send('Username or Password is incorrect') 
+     // Check if password is correct
+     const validPassword = await bcrypt.compare(req.body.password, email.password)
+     if(!validPassword) return res.status(400).send('Username or Password is incorrect') 
 
-    // Login Token
+     // Login Token
 
-    const token = jwt.sign({id: user._id}, process.env.TOKEN_SECRET)
-    res.header('login-token', token).send(`${token}`)
+     const token = jwt.sign({id: email._id}, process.env.TOKEN_SECRET)
+     res.header('login-token', token).json({token: token})
 
 
-})
+ })
 
 module.exports = router
