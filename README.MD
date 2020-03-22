@@ -64,7 +64,7 @@ Used to create login authorization tokens
 
 [Material Ui](https://material-ui.com)
 
-``` javascript
+``` JSX
 <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
     <CardContent>
         <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
