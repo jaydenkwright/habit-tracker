@@ -1,0 +1,31 @@
+.email{
+    padding: 1em; 
+}
+
+.emailBox{
+    width: 100%;
+}
+.password{
+    padding: 1em;
+}
+
+.passwordBox{
+    width: 100%;
+}
+
+.submit{
+    padding-top: 1.5em;
+}
+
+.submitBtn{
+    width: 50%;
+}
+
+.card{
+    margin-top: 1em;
+    padding: .3em;
+    width: 70%;
+    display: inline-block;
+    background: #424242;
+    text-align: center;
+}
