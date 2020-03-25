@@ -68,11 +68,15 @@ const loginSchema = joi.object({
 
      // Make sure user exists
      const email = await User.findOne({ email: req.body.email})
-     if(!email) return res.status(400).send('Username or Password is incorrect')
+     if(!email){
+        return res.json({error: 'Username or Password is incorrect'})
+     } 
 
      // Check if password is correct
      const validPassword = await bcrypt.compare(req.body.password, email.password)
-     if(!validPassword) return res.status(400).send('Username or Password is incorrect') 
+     if(!validPassword){
+        return res.send({error: 'Username or Password is incorrect'})
+     } 
 
      // Login Token
 
