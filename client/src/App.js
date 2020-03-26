@@ -3,6 +3,7 @@ import './App.css';
 import Habits from './components/Habits'
 import Login from './components/Login'
 import Context from './Context/Context'
+import Loading from './components/Loading'
 import axios from 'axios'
 
 function App() {
@@ -27,9 +28,7 @@ function App() {
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {//loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
-        }
-        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn}/> : isLoggedIn === false ? <Login setLoggedIn={setLoggedIn}/> : 'Loading...'}
+        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn}/> : isLoggedIn === false ? <Login setLoggedIn={setLoggedIn}/> : <Loading />}
       </Context.Provider>
     </div>
   );
