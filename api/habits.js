@@ -6,7 +6,7 @@ const Habit = require('../models/habit')
 // GET ALL HABITS
 router.get('/', verify, async (req, res) => {
     try{
-    const habits = await Habit.find()
+    const habits = await Habit.find({"userid": req.user.id})
         .sort({ date: -1 })
         .then(habits => res.json(habits))
     }catch(err){
@@ -27,8 +27,9 @@ router.get('/:id', async (req, res) => {
 })
 
 // ADD A HABIT
-router.post('/', async (req, res) => {
+router.post('/', verify, async (req, res) => {
     const newHabit = new Habit({
+        userid: req.user.id,
         title: req.body.title,
         description: req.body.description,
     })
@@ -45,7 +46,7 @@ router.delete('/:id', async (req, res) => {
     try{
         const habit = await Habit.findById(req.params.id)
             .then(habit => habit.remove())
-                .then(() => res.json({ delted: true}))
+                .then(() => res.json({ deleted: true}))
             .catch(err => res.status(404).json({ deleted: false}))
         res.json(habit)
     }catch(err){

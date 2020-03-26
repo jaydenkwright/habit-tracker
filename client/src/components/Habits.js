@@ -20,7 +20,6 @@ function Habits (props){
     const [date, setDate] = useState(new Date())
     const [habitData, setHabitData] = useState([])
 
-
     const loadHabit = (id) => {
         toggleHabit(true)
         setHabitId(id)
@@ -44,6 +43,7 @@ function Habits (props){
         axios.delete(`http://localhost:5000/api/habits/${id}`)
             .then((response) => {
                 console.log(response);
+                props.setNewHabitData(response)
 
             }, (error) => {
                 console.log(error);
@@ -65,7 +65,7 @@ function Habits (props){
                                     <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
                                 </IconButton>
                             </div>
-                        {addHabitVisisble === true ? <AddHabit /> : ''}    
+                        {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : ''}    
                         {
                             context.habits.map((habit) => (
                                 <Card style={{ backgroundColor: "#424242" }} className={styles.card}>

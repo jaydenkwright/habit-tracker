@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const habitSchema = new Schema({
+    userid: {
+        type: String,
+        require: true
+    },
     title: {
         type: String,
         require: true

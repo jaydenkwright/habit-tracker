@@ -7,7 +7,7 @@ import { green } from '@material-ui/core/colors';
 import styles from './AddHabits.module.css'
 import axios from 'axios'
 
-export default function AddHabit() {
+export default function AddHabit(props) {
     const [title, setTitle] = useState('')
     const [description, setDesc] = useState('')
 
@@ -23,10 +23,10 @@ export default function AddHabit() {
         axios.post('http://localhost:5000/api/habits', {
             title: title,
             description: description
-        })
+        }, {'withCredentials':true})
             .then((response) => {
                 console.log(response);
-
+                props.setNewHabitData(response)
               }, (error) => {
                 console.log(error);
               });
