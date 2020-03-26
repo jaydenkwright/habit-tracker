@@ -81,7 +81,11 @@ const loginSchema = joi.object({
      // Login Token
 
      const token = jwt.sign({id: email._id}, process.env.TOKEN_SECRET)
-     res.header('login-token', token).json({token: token})
+      res.cookie('token', token, {
+         httpOnly: true,
+       })
+       console.log(req.cookies.token)
+    res.header('login-token', token).json({token: token})
 
 
  })

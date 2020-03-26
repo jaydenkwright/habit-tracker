@@ -4,7 +4,7 @@ const verify = require('./verifyToken')
 const Habit = require('../models/habit')
 
 // GET ALL HABITS
-router.get('/', async (req, res) => {
+router.get('/', verify, async (req, res) => {
     try{
     const habits = await Habit.find()
         .sort({ date: -1 })

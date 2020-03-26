@@ -17,4 +17,14 @@
     display: inline-block;
     background: #424242;
     text-align: left;
+    animation: fade 1s ease;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
 }

@@ -4,12 +4,17 @@ const express = require('express')
 const mongoose = require('mongoose')
 const habits = require('./api/habits')
 const completions = require('./api/completed')
+const cookieParser = require('cookie-parser');
 const auth = require('./api/auth')
 const app = express()
 const cors = require('cors');
 
-app.use(cors());
+app.use(cookieParser());
 app.use(express.json())
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
 
 mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true})
     .then(() => console.log('Connected to databse'))

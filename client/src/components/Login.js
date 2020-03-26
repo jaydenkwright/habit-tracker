@@ -23,7 +23,7 @@ export default function Login(props) {
         axios.post('http://localhost:5000/api/user/login', {
             email: email,
             password: pass
-        })
+        }, {'withCredentials':true})
             .then((response) => {
                 if(response.data.error){
                     setError(response.data.error)
@@ -31,7 +31,7 @@ export default function Login(props) {
                 }else{
                     console.log(response);
                     props.setToken(response.data.token)
-                    document.cookie=`login_token=${response.data.token}`
+                    //document.cookie=`login_token=${response.data.token}`
                 }
 
               }, (error) => {
