@@ -30,8 +30,7 @@ export default function Login(props) {
                     console.log(response.data.error)
                 }else{
                     console.log(response);
-                    props.setToken(response.data.token)
-                    //document.cookie=`login_token=${response.data.token}`
+                    props.setLoggedIn(true)
                 }
 
               }, (error) => {

@@ -84,10 +84,7 @@ const loginSchema = joi.object({
       res.cookie('token', token, {
          httpOnly: true,
        })
-       console.log(req.cookies.token)
     res.header('login-token', token).json({token: token})
-
-
  })
 
 module.exports = router

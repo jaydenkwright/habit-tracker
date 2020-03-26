@@ -5,25 +5,31 @@ import Login from './components/Login'
 import Context from './Context/Context'
 import axios from 'axios'
 
-function App(props) {
+function App() {
   const [loginToken, setLoginToken] = useState('')
   const [habitData, setHabitData] = useState([])
-    if(loginToken){
-      console.log('fetching...')
-    axios.get('http://localhost:5000/api/habits', {headers: {'login-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlNzY4ZjJjNDVmMGI1YWQ0ZDljN2EzMCIsImlhdCI6MTU4NDgzMjk5MH0.SoiHiVYqjq1LjO8J8iflWcPMGKekAbSri-9UCWCQeZQ'}})
-      .then((response) => {
-        setHabitData(response.data)
-      })
-    }
-
+  const [isLoggedIn, setLoggedIn] = useState(undefined)
   
+  useEffect(() => {
+    axios.get('http://localhost:5000/api/habits', {'withCredentials':true})
+    .then((response) => {
+      setLoggedIn(true)
+        setHabitData(response.data)
+    }, (error) => {
+        console.log(error);
+        if(error){
+            setLoggedIn(false)
+        }
+    });
+}, [isLoggedIn])
 
-  console.log(loginToken)
+  console.log(isLoggedIn)
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
-
+        {//loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
+        }
+        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn}/> : isLoggedIn === false ? <Login setLoggedIn={setLoggedIn}/> : 'Loading...'}
       </Context.Provider>
     </div>
   );

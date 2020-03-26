@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './Habits.module.css'
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,11 +13,14 @@ import MarkComplete from './MarkComplete'
 import moment from 'moment'
 import axios from 'axios'
 
-function Habits (){       
+function Habits (props){       
     const [addHabitVisisble, setAddHabitVisible] = useState(false)
     const [showHabit, toggleHabit] = useState(false)
     const [habitId, setHabitId] = useState('')
     const [date, setDate] = useState(new Date())
+    const [habitData, setHabitData] = useState([])
+
+
     const loadHabit = (id) => {
         toggleHabit(true)
         setHabitId(id)
@@ -37,7 +40,6 @@ function Habits (){
                 console.log(error);
             });
     }
-
     const deleteHabit = (id) => {
         axios.delete(`http://localhost:5000/api/habits/${id}`)
             .then((response) => {
@@ -47,6 +49,8 @@ function Habits (){
                 console.log(error);
             });
     }
+
+
         return (
             <div>
                 <h1 className={styles.title}>Today</h1>
