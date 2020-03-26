@@ -5,7 +5,7 @@ import Login from './components/Login'
 import Context from './Context/Context'
 import axios from 'axios'
 
-function App() {
+function App(props) {
   const [loginToken, setLoginToken] = useState('')
   const [habitData, setHabitData] = useState([])
   useEffect(() => {
@@ -15,11 +15,13 @@ function App() {
       })
   }, [])
 
-  console.log(habitData)
+  
+
+  console.log(loginToken)
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {loginToken ? <Habits /> : <Login />}
+        {loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
       </Context.Provider>
     </div>
   );
