@@ -21,7 +21,9 @@ function App(props) {
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
+        {//loginToken ? <Habits /> : <Login setToken={setLoginToken}/>}
+}
+        <Habits />
       </Context.Provider>
     </div>
   );

@@ -2,6 +2,7 @@
     font-Size: 72px;
     text-align: left;
     color: #eceff1;
+    animation: fade 2s ease;
 }
 
 .notCompleted{
@@ -27,6 +28,7 @@
     font-Size: 20px;
     padding-Top: 1em;
     padding-Left: .3em;
+    animation: fade 3s ease;
 }
 
 .card{
@@ -36,4 +38,14 @@
     display: inline-block;
     background: #424242;
     text-align: left;
+    animation: fade 1s ease;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
 }

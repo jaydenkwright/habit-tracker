@@ -5,6 +5,7 @@
     color: #f44336;
     outline: none;
     border: none;
+    animation: fade 1s ease;
 }
 
 .completed{
@@ -14,4 +15,14 @@
     color: #f44336;
     outline: none;
     border: none;
+    animation: fade 1s ease;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
 }

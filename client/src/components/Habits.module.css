@@ -2,16 +2,19 @@
     font-size: 72px;
     color: #fafafa;
     margin: .3em;
+    animation: fade 1s ease;
 }
 
 .dayOfWeek{
     font-size: 3em;
     color: #fafafa;
+    animation: fade 1s ease;
 }
 
 .date{
     font-size: 2em;
     color: #fafafa;
+    animation: fade 1s ease;
 }
 
 .card{
@@ -21,6 +24,7 @@
     display: inline-block;
     background: #424242;
     text-align: left;
+    animation: fade 1s ease;
 }
 
 .habitTitle{
@@ -28,6 +32,7 @@
     text-Align: left;
     color: #eceff1;
     cursor: pointer;
+    animation: fade 2s ease;
 }
 
 .description{
@@ -35,6 +40,7 @@
     font-Size: 24px;
     padding-Top: .4em;
     padding-Left: .3em;
+    animation: fade 3s ease;
 }
 
 .delete{
@@ -42,4 +48,13 @@
     padding: 0;
     color: #212121;
     cursor: pointer;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
 }
