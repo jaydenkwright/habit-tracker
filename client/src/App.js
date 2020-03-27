@@ -4,6 +4,7 @@ import Habits from './components/Habits'
 import Login from './components/Login'
 import Context from './Context/Context'
 import Loading from './components/Loading'
+import Footer from './components/Footer'
 import axios from 'axios'
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
       <Context.Provider value={{habits: habitData}}>
         {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn} setNewHabitData={setNewHabitData}/> : isLoggedIn === false ? <Login setLoggedIn={setLoggedIn}/> : <Loading />}
       </Context.Provider>
+      <Footer isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
     </div>
   );
 }

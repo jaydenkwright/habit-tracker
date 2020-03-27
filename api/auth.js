@@ -78,13 +78,17 @@ const loginSchema = joi.object({
      })
       res.cookie('token', token, {
          httpOnly: true,
-         maxAge: 3600000,
        })
     res.header('login-token', token).json({token: token})
  })
 
 router.post('/logout', async (req, res) => {
-    res.clearCookie('token')
+    try{
+        res.clearCookie('token', { path: '/', httpOnly: true})
+        res.json({message: "logged out"})
+    }catch(err){
+        res.json({message: err})
+    }
 })
 
 module.exports = router
