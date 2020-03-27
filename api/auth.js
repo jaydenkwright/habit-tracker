@@ -11,9 +11,6 @@ const registerSchema = joi.object({
     name: joi.string()
         .min(2)
         .required(),
-    username: joi.string()
-        .min(4)
-        .required(),
     email: joi.string()
         .min(6)
         .email()
@@ -30,9 +27,6 @@ router.post('/register', async (req, res) => {
     //check if user is in database
     const emailExist = await User.findOne({ email: req.body.email})
     if(emailExist) return res.status(400).send('Email is already in use')
-
-    const userExist = await User.findOne({ username: req.body.username})
-    if(userExist) return res.status(400).send('Username is already taken')
     // Create new user
 
     // Password hashing
@@ -41,7 +35,6 @@ router.post('/register', async (req, res) => {
 
     const user = new User({
         name: req.body.name,
-        username: req.body.username,
         email: req.body.email,
         password: hashedPassword
     })
@@ -69,22 +62,29 @@ const loginSchema = joi.object({
      // Make sure user exists
      const email = await User.findOne({ email: req.body.email})
      if(!email){
-        return res.json({error: 'Username or Password is incorrect'})
+        return res.json({error: 'Email or Password is incorrect'})
      } 
 
      // Check if password is correct
      const validPassword = await bcrypt.compare(req.body.password, email.password)
      if(!validPassword){
-        return res.send({error: 'Username or Password is incorrect'})
+        return res.send({error: 'Email or Password is incorrect'})
      } 
 
      // Login Token
 
-     const token = jwt.sign({id: email._id}, process.env.TOKEN_SECRET)
+     const token = jwt.sign({id: email._id}, process.env.TOKEN_SECRET, {
+        expiresIn: '1h'
+     })
       res.cookie('token', token, {
          httpOnly: true,
+         maxAge: 3600000,
        })
     res.header('login-token', token).json({token: token})
  })
+
+router.post('/logout', async (req, res) => {
+    res.clearCookie('token')
+})
 
 module.exports = router
