@@ -22,3 +22,17 @@ code {
 h1{
   margin: 0;
 }
+
+#info{
+  height: 60vh;
+  animation: fade 2s ease;
+}
+
+@keyframes fade {
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 100;
+  }
+}

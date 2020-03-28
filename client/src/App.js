@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './App.css';
 import Habits from './components/Habits'
-import Login from './components/Login'
+import Home from './components/Home'
 import Context from './Context/Context'
 import Loading from './components/Loading'
 import Footer from './components/Footer'
@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn} setNewHabitData={setNewHabitData}/> : isLoggedIn === false ? <Login setLoggedIn={setLoggedIn}/> : <Loading />}
+        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn} setNewHabitData={setNewHabitData}/> : isLoggedIn === false ? <Home setLoggedIn={setLoggedIn}/> : <Loading />}
       </Context.Provider>
       <Footer isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
     </div>

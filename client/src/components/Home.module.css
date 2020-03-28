@@ -1,0 +1,138 @@
+.name{
+    padding: 1em; 
+}
+
+.nameBox{
+    width: 100%;
+}
+
+.email{
+    padding: 1em; 
+}
+
+.emailBox{
+    width: 100%;
+}
+.password{
+    padding: 1em;
+}
+
+.passwordBox{
+    width: 100%;
+}
+
+.submit{
+    padding-top: 1.5em;
+}
+
+.submitBtn{
+    width: 50%;
+}
+
+.card{
+    margin-top: 1em;
+    padding: .3em;
+    width: 70%;
+    display: inline-block;
+    background: #424242;
+    text-align: center;
+}
+
+.presentation{
+    display: flex;
+    width: 80%;
+    margin: auto;
+    min-height: 90vh;
+    align-items: center;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.introduction {
+    flex: 1;
+}
+
+.svg {
+    height: 60vh;
+    width: 70%;
+    margin: 0;
+    animation: fade 1s ease;
+}
+
+.title {
+    font-size: 7vh;
+    font-weight: 500;
+    color: #e0e0e0;
+}
+
+.subtitle{
+    margin-top: 2vh;
+    font-size: 3vh;
+    font-weight: 400;
+    color: #bdbdbd;
+}
+
+.builtWithTitle{
+    margin-top: 10vh;
+    font-size: 5vh;
+    font-weight: 500;
+    color: #bdbdbd; 
+}
+
+.builtWithItem1{
+    flex: 1;
+}
+.builtWithItem2{
+    flex: 1;
+}
+.builtWithItem{
+    flex: 1;
+}
+
+.builtWith{
+    margin-top: 2vh;
+    font-size: 2vh;
+    font-weight: 400;
+    color: #bdbdbd;
+    display: flex;
+    width: 30%;
+}
+
+.loginRegister {
+    flex: 1;
+}
+
+@keyframes fade {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+
+
+@media screen and (max-width: 1024px){
+    .presentation{
+        margin-top: 10vh;
+        flex-direction: column;
+    }
+    .introduction{
+        text-align: center;
+    }
+    .loginRegister{
+        margin: auto;
+    }
+    
+    .card{
+        width: 100%;
+    }
+    
+    .builtWith, .builtWithTitle{
+        display: none;
+    }
+    .svg{
+        height: 60%;
+        width: 100%;
+    }
+}
