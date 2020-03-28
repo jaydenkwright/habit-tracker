@@ -3,6 +3,14 @@ Habit Tracker web app built with MongoDB, Express, React, &amp; Node.js (MERN)
 
 ![Homepage Screenshot](https://i.imgur.com/mpaJGqJ.png)
 
+#Features
+
+* Login / Register
+* Add new habits through POST requests to the API
+* View habits through GET requests
+* Delete habits with DELETE requests
+* Mark habits as completed
+
 # Built With
 
 [Mongoose.js](https://mongoosejs.com)

@@ -34,7 +34,7 @@ export default function Footer(props) {
         <div>
             {
                 props.isLoggedIn ?  <Button type="submit" variant="contained" style={{ backgroundColor: red[500] }} onClick={logout}> Logout </Button> 
-                : 'Created by Jayden Wright'
+                : null
             }
         </div>
     )

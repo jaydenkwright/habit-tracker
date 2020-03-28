@@ -8,7 +8,6 @@ import Footer from './components/Footer'
 import axios from 'axios'
 
 function App() {
-  const [loginToken, setLoginToken] = useState('')
   const [habitData, setHabitData] = useState([])
   const [isLoggedIn, setLoggedIn] = useState(undefined)
   const [newHabitData, setNewHabitData] = useState('')
@@ -17,7 +16,6 @@ function App() {
     axios.get('http://localhost:5000/api/habits', {'withCredentials':true})
     .then((response) => {
       setLoggedIn(true)
-        console.log(response)
         setHabitData(response.data)
     }, (error) => {
         console.log(error);
@@ -27,8 +25,6 @@ function App() {
     });
 }, [isLoggedIn, newHabitData])
 
-  console.log(newHabitData)
-  console.log(isLoggedIn)
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>

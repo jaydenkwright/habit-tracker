@@ -1,3 +1,11 @@
+.name{
+    padding: 1em; 
+}
+
+.nameBox{
+    width: 100%;
+}
+
 .email{
     padding: 1em; 
 }
