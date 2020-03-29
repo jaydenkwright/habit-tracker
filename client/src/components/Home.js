@@ -11,7 +11,8 @@ export default function Home(props) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [pass, setPass] = useState('')
-    const [error, setError] = useState('')
+    const [loginError, setLoginError] = useState('')
+    const [registrationError, setRegistrationError] = useState('')
     const onEmailChange = (e) => {
         setEmail(e.target.value)
     }
@@ -31,7 +32,7 @@ export default function Home(props) {
         }, {'withCredentials':true})
             .then((response) => {
                 if(response.data.error){
-                    setError(response.data.error)
+                    setLoginError(response.data.error)
                     console.log(response.data.error)
                 }else{
                     console.log(response);
@@ -51,7 +52,7 @@ export default function Home(props) {
         }, {'withCredentials':true})
         .then((response) => {
             if(response.data.error){
-                setError(response.data.error)
+                setRegistrationError(response.data.error)
                 console.log(response.data.error)
             }else{
                 console.log(response);
@@ -152,7 +153,7 @@ export default function Home(props) {
                             <div class={styles.loginTitle}>
                                 <h1>Login</h1>
                             </div>
-                            {error ? error : null}
+                            {loginError ? loginError : null}
                             <form noValidate autoComplete="off" onSubmit={login}>
                                 <div className={styles.email}>
                                     <TextField id="standard-basic" label="Email..." type="email" className={styles.emailBox} onChange={onEmailChange}/>
@@ -171,7 +172,7 @@ export default function Home(props) {
                         <div class={styles.loginTitle}>
                                 <h1>Sign up</h1>
                             </div>
-                            {error ? error : ''}
+                            {registrationError ? registrationError : null}
                             <form noValidate autoComplete="off" onSubmit={registration}>
                                 <div className={styles.name}>
                                     <TextField id="standard-basic" label="Name..." type="text" className={styles.nameBox} onChange={onNameChange}/>

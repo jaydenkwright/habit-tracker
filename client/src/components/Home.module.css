@@ -36,8 +36,10 @@
 
 .card{
     margin-top: 1em;
-    padding: .3em;
-    width: 70%;
+    padding: 0;
+    min-width: 70%;
+    max-width: 70vw;
+    width: 70wv;
     display: inline-block;
     background: #424242;
     text-align: center;

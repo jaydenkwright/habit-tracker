@@ -22,11 +22,11 @@ const registerSchema = joi.object({
 
 router.post('/register', async (req, res) => {
     const {error} = registerSchema.validate(req.body);
-    if(error) return res.status(400).send(error.details[0].message)
+    if(error) return res.json({error: "There was an error with your information"})
 
     //check if user is in database
     const emailExist = await User.findOne({ email: req.body.email})
-    if(emailExist) return res.status(400).send('Email is already in use')
+    if(emailExist) return res.json({error: 'Email is already in use'})
     // Create new user
 
     // Password hashing
@@ -57,7 +57,7 @@ const loginSchema = joi.object({
 
  router.post('/login', async (req, res) => {
      const {error} = loginSchema.validate(req.body);
-     if(error) return res.status(400).send(error.details[0].message)
+     if(error) return res.json({error: 'There was an error with your email or password'})
 
      // Make sure user exists
      const email = await User.findOne({ email: req.body.email})
