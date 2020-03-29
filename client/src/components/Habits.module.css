@@ -20,7 +20,7 @@
 .card{
     margin-top: 1em;
     padding: .3em;
-    width: 70%;
+    width: 50%;
     display: inline-block;
     background: #424242;
     text-align: left;
@@ -39,7 +39,6 @@
     color: #bdbdbd;
     font-Size: 24px;
     padding-Top: .4em;
-    padding-Left: .3em;
     animation: fade 3s ease;
 }
 
@@ -50,6 +49,55 @@
     cursor: pointer;
 }
 
+.app{
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.sidebar {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #757575;
+    height: 100vh;
+    min-width: 20%;
+    max-width: 20%;
+    flex: 1;
+}
+
+.sidebarDate{
+    background-color: #616161;
+    padding-top: 7vh;
+    padding-bottom: 10vh;
+    text-align: center;
+}
+
+.sidebarTitle{
+    font-size: 2em;
+    padding: 1em;
+    text-align: center;
+    color: #fafafa;
+}
+
+.sidebarStats{
+    display: flex;
+}
+
+.sidebarTotal{
+    text-align: center;
+    flex: 1;
+    color: #f5f5f5;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.habits{
+    width: 100%;
+    flex: 1;
+    text-align: center;
+}
+
 @keyframes fade{
     0%{
         opacity: 0;
@@ -57,4 +105,27 @@
     100%{
         opacity: 100;
     }
+}
+
+@media screen and (max-width: 1024px){
+    .card{
+        margin-top: 1em;
+        padding: .3em;
+        width: 70%;
+        display: inline-block;
+        background: #424242;
+        text-align: left;
+        animation: fade 1s ease;
+    }
+    .sidebar{
+        display: none;
+    }
+    .habits{
+        flex: 1;
+    }
+
+    .app{
+        width: 100%;
+    }
+
 }

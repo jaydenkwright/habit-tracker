@@ -53,41 +53,72 @@ function Habits (props){
 
         return (
             <div>
-                <h1 className={styles.title}>Today</h1>
-                <h1 className={styles.dayOfWeek}>{ moment().format("ddd") }</h1>
-                <h1 className={styles.date}>{ moment().format("MMM D YYYY") }</h1>
-                <Context.Consumer>
-                    {context => 
-                    showHabit === false ?
-                        <div>
-                            <div>
-                                <IconButton>
-                                    <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
-                                </IconButton>
-                            </div>
-                        {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : ''}    
-                        {
-                            context.habits.map((habit) => (
-                                <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
-                                    <CardContent>
-                                        <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
-                                            x
+                <main>
+                    <section className={styles.app}>
+                        <div className={styles.sidebar}>
+                                <div className={styles.sidebarDate}>
+                                    <h1 className={styles.dayOfWeek}>{ moment().format("ddd") }</h1>
+                                    <h1 className={styles.date}>{ moment().format("MMM D YYYY") }</h1>
+                                </div>
+                                <div className={styles.sidebarTitle}>
+                                    <h1>/ME</h1>
+                                </div>
+                                <div className={styles.sidebarStats}>
+                                    <div className={styles.sidebarTotal}>
+                                        <div>
+                                            11
                                         </div>
-                                        <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
-                                            {habit.title}
+                                        <div>
+                                            Completions
                                         </div>
-                                        <MarkComplete id={habit._id} date={date}/>
-                                        <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
-                                        {habit.description}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            ))
-                        }
+                                    </div>
+                                    <div className={styles.sidebarTotal}>
+                                        <div>
+                                            87.3%
+                                        </div>
+                                        <div>
+                                            Rate
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
-                        : <Habit id={habitId}/>
-                    } 
-                </Context.Consumer>
+                        <div className={styles.habits}>
+                            <h1 className={styles.title}>Today</h1>
+                            <Context.Consumer>
+                                {context => 
+                                showHabit === false ?
+                                    <div>
+                                        <div>
+                                            <IconButton>
+                                                <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
+                                            </IconButton>
+                                        </div>
+                                    {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : ''}    
+                                    {
+                                        context.habits.map((habit) => (
+                                            <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
+                                                <CardContent>
+                                                    <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
+                                                        x
+                                                    </div>
+                                                    <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
+                                                        {habit.title}
+                                                    </div>
+                                                    <MarkComplete id={habit._id} date={date}/>
+                                                    <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
+                                                    {habit.description}
+                                                    </Typography>
+                                                </CardContent>
+                                            </Card>
+                                        ))
+                                    }
+                                    </div>
+                                    : <Habit id={habitId}/>
+                                } 
+                            </Context.Consumer>
+                        </div>
+                    </section>
+                </main>
             </div>
         )
     }

@@ -29,6 +29,11 @@
     width: 50%;
 }
 
+.loginTitle{
+    text-align: center;
+    color: #e0e0e0;
+}
+
 .card{
     margin-top: 1em;
     padding: .3em;
@@ -101,6 +106,7 @@
 .loginRegister {
     flex: 1;
 }
+
 
 @keyframes fade {
     0%{
