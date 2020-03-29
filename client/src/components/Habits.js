@@ -53,8 +53,6 @@ function Habits (props){
 
         return (
             <div>
-                <main>
-                    <section className={styles.app}>
                         <div className={styles.sidebar}>
                                 <div className={styles.sidebarDate}>
                                     <h1 className={styles.dayOfWeek}>{ moment().format("ddd") }</h1>
@@ -82,6 +80,7 @@ function Habits (props){
                                     </div>
                                 </div>
                         </div>
+                        <div className={styles.main}>
                         <div className={styles.habits}>
                             <h1 className={styles.title}>Today</h1>
                             <Context.Consumer>
@@ -117,8 +116,7 @@ function Habits (props){
                                 } 
                             </Context.Consumer>
                         </div>
-                    </section>
-                </main>
+                        </div>
             </div>
         )
     }
