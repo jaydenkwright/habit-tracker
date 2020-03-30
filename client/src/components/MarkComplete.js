@@ -8,19 +8,18 @@ export default function MarkComplete(props) {
     const [completionId, setCompletionId] = useState('')
     useEffect(() => {
         axios.get(`http://localhost:5000/api/completed/${props.id}/${props.date}`)
-        .then((response) => {
-            if(response.data[0]){
-                console.log(response.data[0])
-                setCompleted(response.data[0].completed)
-                setCompletionId(response.data[0]._id)
-                setNewUpdate(true)
+            .then((response) => {
+                if(response.data[0]){
+                    setCompleted(response.data[0].completed)
+                    setCompletionId(response.data[0]._id)
+                    setNewUpdate(true)  
                 console.log(complete.completed)
-            }else{
-                setCompleted('')
-                setNewUpdate(false)
-            }
+                }else{
+                    setCompleted(false)
+                    setNewUpdate(false)
+                }
       })
-    }, [])
+    }, [props.newHabitData])
     const completeHabit = (id) => {
         setCompleted(!complete)
         console.log(complete)
@@ -75,7 +74,7 @@ export default function MarkComplete(props) {
     }
     return (
         <div>
-           <button className={complete === true ? styles.completed : styles.notCompleted} onClick={() => completeHabit(props.id)}></button> 
+           <button className={complete === true ? styles.completed : complete === false ? styles.notCompleted : null} onClick={() => completeHabit(props.id)}></button> 
         </div>
     )
 }

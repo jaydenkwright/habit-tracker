@@ -44,7 +44,6 @@ function Habits (props){
             .then((response) => {
                 console.log(response);
                 props.setNewHabitData(response)
-
             }, (error) => {
                 console.log(error);
             });
@@ -92,7 +91,7 @@ function Habits (props){
                                                 <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
                                             </IconButton>
                                         </div>
-                                    {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : ''}    
+                                    {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : null}    
                                     {
                                         context.habits.map((habit) => (
                                             <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
@@ -103,7 +102,7 @@ function Habits (props){
                                                     <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
                                                         {habit.title}
                                                     </div>
-                                                    <MarkComplete id={habit._id} date={date}/>
+                                                    <MarkComplete newHabitData={props.newHabitData} setHabitData={props.setHabitData} id={habit._id} date={date}/>
                                                     <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
                                                     {habit.description}
                                                     </Typography>

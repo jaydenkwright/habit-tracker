@@ -27,6 +27,8 @@ export default function AddHabit(props) {
             .then((response) => {
                 console.log(response);
                 props.setNewHabitData(response)
+                setTitle('')
+                setDesc('')
               }, (error) => {
                 console.log(error);
               });
@@ -47,6 +49,7 @@ export default function AddHabit(props) {
                             <TextField id="standard-basic" 
                                 label="Enter a habit title..." 
                                 onChange={onTitleChange}
+                                value={title}
                             />
                         </div>
                         <div className={styles.description}>
@@ -56,6 +59,7 @@ export default function AddHabit(props) {
                                 multiline
                                 rows="4"
                                 onChange={onDescriptionChange}
+                                value={description}
                             />
                         </div>
                         <div className={styles.submit}>

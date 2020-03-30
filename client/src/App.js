@@ -28,7 +28,7 @@ function App() {
   return (
     <div className="App">
       <Context.Provider value={{habits: habitData}}>
-        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn} setNewHabitData={setNewHabitData}/> : isLoggedIn === false ? <Home setLoggedIn={setLoggedIn}/> : <Loading />}
+        {isLoggedIn === true ? <Habits setLoggedIn={setLoggedIn} newHabitData={newHabitData} setNewHabitData={setNewHabitData}/> : isLoggedIn === false ? <Home setLoggedIn={setLoggedIn}/> : <Loading />}
       </Context.Provider>
       <Footer isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn}/>
     </div>
