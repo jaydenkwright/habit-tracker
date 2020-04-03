@@ -1,0 +1,10 @@
+.main{
+    display: grid;
+    grid-template-columns: 20vw auto;
+}
+
+.footerInfo{
+    width: 100%;
+    grid-column-start: 2;
+    text-align: center;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import { red } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
+import styles from './Footer.module.css'
 
 export default function Footer(props) {
 
@@ -32,10 +33,15 @@ export default function Footer(props) {
 
     return (
         <div>
+            <div className={styles.main}>
+                .
+            <div className={styles.footerInfo}>
             {
                 props.isLoggedIn ?  <Button type="submit" variant="contained" style={{ backgroundColor: red[500] }} onClick={logout}> Logout </Button> 
                 : null
             }
+            </div>
+            </div>
         </div>
     )
 }

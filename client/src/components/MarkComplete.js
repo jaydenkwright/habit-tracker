@@ -20,6 +20,7 @@ export default function MarkComplete(props) {
                 }
       })
     }, [props.newHabitData])
+    
     const completeHabit = (id) => {
         setCompleted(!complete)
         console.log(complete)
