@@ -34,11 +34,22 @@
 .card{
     margin-top: 1em;
     padding: .3em;
-    width: 70%;
+    width: 50%;
     display: inline-block;
     background: #424242;
     text-align: left;
     animation: fade 1s ease;
+}
+
+.main{
+    display: grid;
+    grid-template-columns: 0vw auto;
+}
+
+.habit{
+    width: 100%;
+    grid-column-start: 2;
+    text-align: center;
 }
 
 @keyframes fade{

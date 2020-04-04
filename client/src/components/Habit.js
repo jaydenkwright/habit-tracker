@@ -28,17 +28,21 @@ export default function Habit(props) {
       }, [])
     return (
         <div>
-            <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
-                <CardContent>
-                    <div className={styles.title}>
-                        {habit.title}
-                    </div>
-                        <div className={complete && complete === true ? styles.completed : styles.notCompleted}>.</div>
-                    <Typography variant="h5" className={styles.description}>
-                        {habit.description}
-                    </Typography>
-                </CardContent>
-            </Card>
+            <div className={styles.main}>
+                <div className={styles.habit}>
+                    <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
+                        <CardContent>
+                            <div className={styles.title}>
+                                {habit.title}
+                            </div>
+                                <div className={complete && complete === true ? styles.completed : styles.notCompleted}>.</div>
+                            <Typography variant="h5" className={styles.description}>
+                                {habit.description}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
         </div>
     )
 }
