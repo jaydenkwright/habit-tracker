@@ -34,13 +34,12 @@ export default function Footer(props) {
     return (
         <div>
             <div className={styles.main}>
-                .
-            <div className={styles.footerInfo}>
-            {
-                props.isLoggedIn ?  <Button type="submit" variant="contained" style={{ backgroundColor: red[500] }} onClick={logout}> Logout </Button> 
-                : null
-            }
-            </div>
+                <div className={styles.footerInfo}>
+                {
+                    props.isLoggedIn ?  <Button type="submit" variant="contained"  className={styles.logoutBtn} style={{ backgroundColor: red[500] }} onClick={logout}> Logout </Button> 
+                    : null
+                }
+                </div>
             </div>
         </div>
     )

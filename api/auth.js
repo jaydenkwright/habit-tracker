@@ -4,7 +4,6 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs')
 const joi = require('@hapi/joi')
 const jwt = require('jsonwebtoken')
-const passport = require('passport')
 
 // REGISTRATION
 const registerSchema = joi.object({
@@ -22,7 +21,7 @@ const registerSchema = joi.object({
 
 router.post('/register', async (req, res) => {
     const {error} = registerSchema.validate(req.body);
-    if(error) return res.json({error: "There was an error with your information"})
+    if(error) return res.json({error: 'There was an error with your information'})
 
     //check if user is in database
     const emailExist = await User.findOne({ email: req.body.email})
@@ -87,7 +86,7 @@ router.post('/logout', async (req, res) => {
         res.clearCookie('token', { path: '/', httpOnly: true})
         res.json({message: "logged out"})
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 

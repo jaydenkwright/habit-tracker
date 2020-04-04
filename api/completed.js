@@ -3,15 +3,6 @@ const router = express.Router()
 const Completed = require('../models/completions')
 const moment = require('moment')
 
-// router.get('/:id/:date', async (req, res) => {
-//     try{
-//         const completions = await Completed.find({"_id": req.params.id, "date": req.params.date })
-//             .then(completions => res.json(completions))
-//     }catch(err){
-//         res.json({message: error})
-//     }
-// })
-
 router.get('/:id/:date', async (req, res) => {
     try{
         const start = moment(new Date(req.params.date)).startOf("day")
@@ -22,7 +13,7 @@ router.get('/:id/:date', async (req, res) => {
         }})
             .then(completions => res.json(completions))
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
@@ -36,7 +27,7 @@ router.post('/', async (req, res) => {
         const saveCompletion = await newCompletion.save()
         res.json(saveCompletion)
     }catch(err){
-        res.json( {message: "error" })
+        res.json( {message: 'There was an error'})
     }
 })
 
@@ -48,7 +39,7 @@ router.patch('/:id', async(req, res) => {
             }})
             res.json(completion)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 

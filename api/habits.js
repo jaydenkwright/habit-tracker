@@ -6,14 +6,13 @@ const Habit = require('../models/habit')
 // GET ALL HABITS
 router.get('/', verify, async (req, res) => {
     try{
-    const habits = await Habit.find({"userid": req.user.id})
-        .sort({ date: -1 })
-        .then(habits => res.json(habits))
+        const habits = await Habit.find({"userid": req.user.id})
+            .sort({ date: -1 })
+            .then(habits => res.json(habits))
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
-
 
 
 // GET SPECIFIC HABIT
@@ -22,7 +21,7 @@ router.get('/:id', async (req, res) => {
         const habit = await Habit.findById(req.params.id)
         res.json(habit)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
@@ -37,7 +36,7 @@ router.post('/', verify, async (req, res) => {
         const savedHabit = await newHabit.save()
         res.json(savedHabit)
     }catch(err){
-        res.json({ message: err})
+        res.json({ message: 'There was an error'})
     }
 })
 
@@ -50,7 +49,7 @@ router.delete('/:id', async (req, res) => {
             .catch(err => res.status(404).json({ deleted: false}))
         res.json(habit)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
@@ -64,7 +63,7 @@ router.patch('/:id', async (req, res) => {
             }})
             res.json(habit)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
@@ -73,7 +72,7 @@ router.patch('/increase/:id', async(req, res) => {
         const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: 1 }}, {useFindAndModify: false})
             res.json(habit)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
@@ -82,7 +81,7 @@ router.patch('/decrease/:id', async(req, res) => {
         const habit = await Habit.findOneAndUpdate({ _id: req.params.id }, { $inc: { completions: -1 }}, {useFindAndModify: false})
             res.json(habit)
     }catch(err){
-        res.json({message: err})
+        res.json({message: 'There was an error'})
     }
 })
 
