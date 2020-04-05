@@ -80,41 +80,41 @@ function Habits (props){
                                 </div>
                         </div>
                         <div className={styles.main}>
-                        <div className={styles.habits}>
-                            <h1 className={styles.title}>Today</h1>
-                            <Context.Consumer>
-                                {context => 
-                                showHabit === false ?
-                                    <div>
+                            <div className={styles.habits}>
+                                <h1 className={styles.title}>Today</h1>
+                                <Context.Consumer>
+                                    {context =>
+                                    showHabit === false ?
                                         <div>
-                                            <IconButton>
-                                                <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
-                                            </IconButton>
+                                            <div>
+                                                <IconButton>
+                                                    <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
+                                                </IconButton>
+                                            </div>
+                                        {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : null}    
+                                        {
+                                            context.habits.map((habit) => (
+                                                <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
+                                                    <CardContent>
+                                                        <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
+                                                            x
+                                                        </div>
+                                                        <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
+                                                            {habit.title}
+                                                        </div>
+                                                        <MarkComplete newHabitData={props.newHabitData} setHabitData={props.setHabitData} id={habit._id} date={date}/>
+                                                        <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
+                                                        {habit.description}
+                                                        </Typography>
+                                                    </CardContent>
+                                                </Card>
+                                            ))
+                                        }
                                         </div>
-                                    {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : null}    
-                                    {
-                                        context.habits.map((habit) => (
-                                            <Card style={{ backgroundColor: "#424242" }} className={styles.card}>
-                                                <CardContent>
-                                                    <div className={styles.delete} onClick={() => deleteHabit(habit._id)}>
-                                                        x
-                                                    </div>
-                                                    <div className={styles.habitTitle} onClick={() => loadHabit(habit._id)}>
-                                                        {habit.title}
-                                                    </div>
-                                                    <MarkComplete newHabitData={props.newHabitData} setHabitData={props.setHabitData} id={habit._id} date={date}/>
-                                                    <Typography variant="h5" color="" className={styles.description} onClick={() => loadHabit(habit._id)}>
-                                                    {habit.description}
-                                                    </Typography>
-                                                </CardContent>
-                                            </Card>
-                                        ))
-                                    }
-                                    </div>
-                                    : <Habit id={habitId}/>
-                                } 
-                            </Context.Consumer>
-                        </div>
+                                        : <Habit id={habitId}/>
+                                    } 
+                                </Context.Consumer>
+                            </div>
                         </div>
             </div>
         )

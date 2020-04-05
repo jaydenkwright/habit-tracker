@@ -123,8 +123,15 @@
     .sidebar{
         display: none;
     }
+
+    .main{
+        display: grid;
+        grid-template-columns: auto;
+    }
     .habits{
-        flex: 1;
+        width: 100%;
+        grid-column-start: 0;
+        text-align: center;
     }
 
     .app{

@@ -9,3 +9,16 @@
     grid-column-start: 2;
     text-align: center;
 }
+
+@media screen and (max-width: 1024px){
+    .main{
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .footerInfo{
+        width: 100%;
+        grid-column-start: 1;
+        text-align: center;
+    }
+
+}
