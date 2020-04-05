@@ -147,7 +147,7 @@ export default function Home(props) {
                             Start building good habits today.
                         </div>
                     </div>
-                    <div>
+                    <div className={styles.loginRegister}>
                     <Card style={{ backgroundColor: "#424242"}} className={styles.card}>
                         <CardContent>
                             <div class={styles.loginTitle}>

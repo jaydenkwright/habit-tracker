@@ -10,7 +10,9 @@ export default function Navbar() {
     return (
         <div>
             <header>
-                Habit Tracker
+                <div className={styles.title}>
+                    Habit Tracker
+                </div>
             </header>
         </div>
     )

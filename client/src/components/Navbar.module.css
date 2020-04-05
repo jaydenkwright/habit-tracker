@@ -8,8 +8,12 @@ header{
     height: 10vh;
     margin: auto;
     padding-left: 5%;
-    padding-right: 15%;
     align-items: center;
     background: #333;
     color: #fafafa;
+}
+
+.title{
+    font-size: 2em;
+    font-weight: 500;
 }
