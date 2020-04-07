@@ -4,28 +4,37 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import styles from './Habit.module.css'
+import History from './History'
 
 export default function Habit(props) {
     const d = new Date()
     const [habit, setHabit] = useState([])
     const [date, setDate] = useState(d.toISOString())
     const [complete, setComplete] = useState([])
+    const [completions, setCompletions] = useState([])
     useEffect(() => {
         axios.get(`http://localhost:5000/api/habits/${props.id}`)
           .then((response) => {
-            console.log(response)
             setHabit(response.data)
           })
       }, [])
-      useEffect(() => {
+    useEffect(() => {
         axios.get(`http://localhost:5000/api/completed/${props.id}/${date}`)
         .then((response) => {
             if(response.data[0]){
                 setComplete(response.data[0].completed)
-                console.log(complete)
             }
-      })
+        })
       }, [])
+      useEffect(() => {
+        axios.get(`http://localhost:5000/api/completed/${props.id}/`)
+        .then((response) => {
+            if(response.data){
+                setCompletions(response.data)
+            }
+        })
+      }, [])
+
     return (
         <div>
             <div className={styles.main}>
@@ -39,6 +48,7 @@ export default function Habit(props) {
                             <Typography variant="h5" className={styles.description}>
                                 {habit.description}
                             </Typography>
+                            <History completionData={completions}/>
                         </CardContent>
                     </Card>
                 </div>

@@ -19,6 +19,7 @@ function Habits (props){
     const [habitId, setHabitId] = useState('')
     const [date, setDate] = useState(new Date())
     const [habitData, setHabitData] = useState([])
+    const [error, setError] = useState(null)
 
     const loadHabit = (id) => {
         toggleHabit(true)
@@ -36,6 +37,7 @@ function Habits (props){
                 console.log(response);
 
             }, (error) => {
+                setError(error)
                 console.log(error);
             });
     }
@@ -45,6 +47,7 @@ function Habits (props){
                 console.log(response);
                 props.setNewHabitData(response)
             }, (error) => {
+                setError(error)
                 console.log(error);
             });
     }
@@ -90,6 +93,9 @@ function Habits (props){
                                                 <IconButton>
                                                     <Icon onClick={toggleAddHabit} style={{ color: green[500] }}>add_circle</Icon>
                                                 </IconButton>
+                                            </div>
+                                            <div className={styles.error}>
+                                                {error}
                                             </div>
                                         {addHabitVisisble === true ? <AddHabit setNewHabitData={props.setNewHabitData}/> : null}    
                                         {

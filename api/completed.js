@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const verify = require('./verifyToken')
 const Completed = require('../models/completions')
 const moment = require('moment')
 
@@ -11,6 +12,15 @@ router.get('/:id/:date', async (req, res) => {
             $gte: start,
             $lt: end
         }})
+            .then(completions => res.json(completions))
+    }catch(err){
+        res.json({message: 'There was an error'})
+    }
+})
+
+router.get('/:id', async(req, res) => {
+    try{
+        const completions = await Completed.find({'habitId': req.params.id, completed: true})
             .then(completions => res.json(completions))
     }catch(err){
         res.json({message: 'There was an error'})

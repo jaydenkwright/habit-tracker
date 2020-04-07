@@ -55,7 +55,7 @@ export default function MarkComplete(props) {
                     console.log(error);
                 });
             if(complete === true){
-                axios.patch(`http://localhost:5000/api/habits/decrease/${props.id}`)
+                axios.patch(`http://localhost:5000/api/habits/decrease/${props.id}`, {'withCredentials':true})
                 .then((response) => {
                     console.log(response)
                 }, (error) => {
@@ -63,7 +63,7 @@ export default function MarkComplete(props) {
                 })
             }
             if(complete === false){
-                axios.patch(`http://localhost:5000/api/habits/increase/${props.id}`)
+                axios.patch(`http://localhost:5000/api/habits/increase/${props.id}`, {'withCredentials':true})
                 .then((response) => {
                     console.log(response)
                 }, (error) => {

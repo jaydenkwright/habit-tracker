@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const verify = require('./verifyToken')
 const Habit = require('../models/habit')
+const User = require('../models/user')
 
 // GET ALL HABITS
 router.get('/', verify, async (req, res) => {

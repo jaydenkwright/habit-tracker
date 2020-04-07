@@ -60,3 +60,26 @@
         opacity: 100;
     }
 }
+
+@media screen and (max-width: 1024px){
+    .card{
+        margin-top: 1em;
+        padding: .3em;
+        width: 70%;
+        display: inline-block;
+        background: #424242;
+        text-align: left;
+        animation: fade 1s ease;
+    }
+
+    .main{
+        display: grid;
+        grid-template-columns: 100vw auto;
+    }
+
+    .habit{
+        width: 100%;
+        grid-column-start: 1;
+        text-align: center;
+    }
+}

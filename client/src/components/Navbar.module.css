@@ -17,3 +17,11 @@ header{
     font-size: 2em;
     font-weight: 500;
 }
+
+a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: #fafafa;
+}

@@ -1,0 +1,7 @@
+.history{
+    color: #bdbdbd;
+    font-Size: 1.5em;
+    padding-Top: 1em;
+    padding-Left: .3em;
+    animation: fade 3s ease;
+}

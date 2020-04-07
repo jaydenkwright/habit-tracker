@@ -11,7 +11,7 @@ export default function Navbar() {
         <div>
             <header>
                 <div className={styles.title}>
-                    Habit Tracker
+                    <a href="/">Habit Tracker</a>
                 </div>
             </header>
         </div>
