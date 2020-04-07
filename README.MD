@@ -23,6 +23,32 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true, useCreateIndex: true, 
 
 Used to connect to the MongoDB database
 
+[Chart.js](https://www.chartjs.org/)
+
+``` javascript
+    data = {
+        labels: [
+            'Completed',
+            'Not Completed'
+        ],
+        datasets: [{
+            data: [props.completions, notComplete],
+            backgroundColor: [
+                '#43a047',
+                '#f44336',
+                ],
+            hoverBackgroundColor: [
+                '#388e3c',
+                '#e53935',
+                ],
+            borderColor: [
+                '#43a047',
+                '#f44336',
+            ]
+        }]
+    }
+```
+
 [Axios](https://github.com/axios/axios)
 
 ``` javascript

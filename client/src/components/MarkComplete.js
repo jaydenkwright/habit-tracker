@@ -34,7 +34,9 @@ export default function MarkComplete(props) {
                 .then((response) => {
                     console.log(response);
                     setCompletionId(response.data._id)
-                    props.setHistoryUpdate(response)
+                    if(props.setHistoryUpdate){
+                        props.setHistoryUpdate(response)
+                    }
                 }, (error) => {
                     console.log(error);
                 });
@@ -52,7 +54,9 @@ export default function MarkComplete(props) {
             })
                 .then((response) => {
                     console.log(response)
-                    props.setHistoryUpdate(response)
+                    if(props.setHistoryUpdate){
+                        props.setHistoryUpdate(response)
+                    }
                 }, (error) => {
                     console.log(error);
                 });
