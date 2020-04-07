@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import styles from './Habit.module.css'
 import History from './History'
+import MarkComplete from './MarkComplete'
 
 export default function Habit(props) {
     const d = new Date()
@@ -12,6 +13,8 @@ export default function Habit(props) {
     const [date, setDate] = useState(d.toISOString())
     const [complete, setComplete] = useState([])
     const [completions, setCompletions] = useState([])
+    const [historyUpdate, setHistoryUpdate] = useState(undefined)
+
     useEffect(() => {
         axios.get(`http://localhost:5000/api/habits/${props.id}`)
           .then((response) => {
@@ -33,7 +36,7 @@ export default function Habit(props) {
                 setCompletions(response.data)
             }
         })
-      }, [])
+      }, [historyUpdate])
 
     return (
         <div>
@@ -44,7 +47,7 @@ export default function Habit(props) {
                             <div className={styles.title}>
                                 {habit.title}
                             </div>
-                                <div className={complete && complete === true ? styles.completed : styles.notCompleted}>.</div>
+                            <MarkComplete id={props.id} date={d} setHistoryUpdate={setHistoryUpdate}/>
                             <Typography variant="h5" className={styles.description}>
                                 {habit.description}
                             </Typography>

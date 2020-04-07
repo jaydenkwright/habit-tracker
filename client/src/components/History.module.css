@@ -3,5 +3,36 @@
     font-Size: 1.5em;
     padding-Top: 1em;
     padding-Left: .3em;
-    animation: fade 3s ease;
+    animation: fade 1s ease;
+}
+
+.historyItem{
+    display: flex;
+}
+
+.button{
+    flex: 1;
+    padding-top: .5em;
+}
+
+.historyText{
+    flex: 5;
+}
+
+.completed{
+    background-Color: #43a047;
+    width: 1em;
+    height: .5em;
+    color: #43a047;
+    outline: none;
+    border: none;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
 }

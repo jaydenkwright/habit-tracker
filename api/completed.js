@@ -21,6 +21,7 @@ router.get('/:id/:date', async (req, res) => {
 router.get('/:id', async(req, res) => {
     try{
         const completions = await Completed.find({'habitId': req.params.id, completed: true})
+            .sort({ date: -1 })
             .then(completions => res.json(completions))
     }catch(err){
         res.json({message: 'There was an error'})
