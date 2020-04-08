@@ -33,14 +33,11 @@ export default function Home(props) {
             .then((response) => {
                 if(response.data.error){
                     setLoginError(response.data.error)
-                    console.log(response.data.error)
                 }else{
-                    console.log(response);
                     props.setLoggedIn(true)
                 }
 
               }, (error) => {
-                console.log(error);
               });
     }
     const registration = (e) => {
@@ -53,12 +50,9 @@ export default function Home(props) {
         .then((response) => {
             if(response.data.error){
                 setRegistrationError(response.data.error)
-                console.log(response.data.error)
             }else{
-                console.log(response);
             }
           }, (error) => {
-            console.log(error);
           });
     }
 

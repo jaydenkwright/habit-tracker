@@ -34,6 +34,9 @@ function Habits (props){
             completed: true
         })
             .then((response) => {
+                if(response.data.error){
+                    setError(response.data.error)
+                }
                 console.log(response);
 
             }, (error) => {

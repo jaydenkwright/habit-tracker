@@ -19,7 +19,6 @@ function App() {
       setLoggedIn(true)
         setHabitData(response.data)
     }, (error) => {
-        console.log(error);
         if(error){
             setLoggedIn(false)
         }

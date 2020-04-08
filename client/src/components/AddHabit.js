@@ -25,17 +25,12 @@ export default function AddHabit(props) {
             description: description
         }, {'withCredentials':true})
             .then((response) => {
-                console.log(response);
                 props.setNewHabitData(response)
                 setTitle('')
                 setDesc('')
               }, (error) => {
-                console.log(error);
               });
-        console.log('submited')
     }
-    console.log(title)
-    console.log(description)
     return (
         <div>
             <Card style={{ backgroundColor: "#424242" }} className={styles.card}>

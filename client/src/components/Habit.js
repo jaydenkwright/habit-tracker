@@ -15,7 +15,6 @@ export default function Habit(props) {
     const [complete, setComplete] = useState([])
     const [completions, setCompletions] = useState([])
     const [historyUpdate, setHistoryUpdate] = useState([])
-
     useEffect(() => {
         axios.get(`http://localhost:5000/api/habits/${props.id}`)
           .then((response) => {
@@ -38,6 +37,7 @@ export default function Habit(props) {
             }
         })
       }, [historyUpdate])
+
 
     return (
         <div>
